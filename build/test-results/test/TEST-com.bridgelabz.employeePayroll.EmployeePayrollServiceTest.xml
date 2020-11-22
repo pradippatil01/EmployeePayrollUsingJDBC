@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridgelabz.employeePayroll.EmployeePayrollServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-20T08:38:33" hostname="DESKTOP-RFK6RG2" time="1.451">
+  <properties/>
+  <testcase name="givenNewSalaryForEmployee_whenUpdated_ShouldMatchWithDB" classname="com.bridgelabz.employeePayroll.EmployeePayrollServiceTest" time="1.451"/>
+  <system-out><![CDATA[13
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
