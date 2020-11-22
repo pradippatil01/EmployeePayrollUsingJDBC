@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import static com.bridgelabz.employeePayroll.EmployeePayrollServices.IOService.DB_IO;
 
@@ -32,5 +33,14 @@ public class EmployeePayrollTestCase {
         List<EmployeePayrollData> employeePayrollDataList = employeePayrollServices.readEmployeeDataForDateRange(DB_IO, startDate, endDate);
         Assert.assertEquals(3, employeePayrollDataList.size());
     }
+
+    @Test
+    public void givenPayrollData_whenAverageSalaryRetrievedByGender_shouldReturnProperValue() throws InvalidException {
+        EmployeePayrollServices employeePayrollServices = new EmployeePayrollServices();
+        Map<String, Double> averageSalaryByGender = employeePayrollServices.readAverageSalaryByGender(DB_IO);
+        Assert.assertTrue(averageSalaryByGender.get("M").equals(20000.00) &&
+                averageSalaryByGender.get("F").equals(30000.00));
+    }
+
 
 }
