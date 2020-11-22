@@ -23,6 +23,12 @@ public class EmployeePayrollServices {
         return this.employeePayrollList;
     }
 
+    public List<EmployeePayrollData> addEmployeeToPayroll(String name, double salary, LocalDate date, String gender, IOService ioService) {
+        if (ioService.equals(IOService.DB_IO))
+            this.employeePayrollList = (List<EmployeePayrollData>) employeePayrollDBServices.addEmployeeToPayroll(name,salary,date,gender);
+        return this.employeePayrollList;
+    }
+
     public void updateEmployeeSalary(String name, double salary) throws InvalidException {
         int result = employeePayrollDBServices.updateData(name, salary);
         if (result == 0)
