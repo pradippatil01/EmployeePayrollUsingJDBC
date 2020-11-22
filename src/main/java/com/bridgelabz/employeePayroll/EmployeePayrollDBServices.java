@@ -94,4 +94,13 @@ public class EmployeePayrollDBServices {
                     InvalidException.ExceptionType.SQL_EXCEPTION);
         }
     }
+
+    public List<EmployeePayrollData> getEmployeeForDateRange(LocalDate startDate, LocalDate endDate) throws InvalidException {
+        String sql = String.format("SELECT * FROM EMPLOYEE WHERE START BETWEEN '%S' AND '%S';",
+                Date.valueOf(startDate), Date.valueOf(endDate));
+        return this.getEmployeeDataUsingDB(sql);
+
+    }
+
 }
+

@@ -1,11 +1,11 @@
 package com.bridgelabz.employeePayroll;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EmployeePayrollServices {
     public List<EmployeePayrollData> employeePayrollList;
     public EmployeePayrollDBServices employeePayrollDBServices;
-
 
 
     public enum IOService {
@@ -46,4 +46,9 @@ public class EmployeePayrollServices {
 
     }
 
+    public List<EmployeePayrollData> readEmployeeDataForDateRange(IOService ioService, LocalDate startDate, LocalDate endDate) throws InvalidException {
+        if (ioService.equals(IOService.DB_IO))
+            return employeePayrollDBServices.getEmployeeForDateRange(startDate, endDate);
+        return null;
+    }
 }
