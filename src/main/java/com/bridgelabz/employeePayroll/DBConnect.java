@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.Enumeration;
 
 public class DBConnect {
+
+    private  int connectionCounter=0;
+
     public static void main(String[] args) {
         String jdbcURL = "jdbc:mysql://localhost:3306/EMPLOYEE_SERVICE?useSSL=false";
         String username = "root";

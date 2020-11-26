@@ -3,7 +3,10 @@ package com.bridgelabz.employeePayroll;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -15,16 +18,14 @@ public class EmployeePayrollServiceTest {
     public void givenEmployeePayrollInDB_whenRetrieved_ShouldMatchEmployeeCount() {
         EmployeePayrollServices employeePayrollServices = new EmployeePayrollServices();
         List<EmployeePayrollData> employeePayrollData = employeePayrollServices.readEmployeeData(DB_IO);
-        Assert.assertEquals(3, employeePayrollData.size());
+        Assert.assertEquals(1, employeePayrollData.size());
     }
 
     @Test
     public void givenNewSalaryForEmployee_whenUpdated_ShouldMatchWithDB() {
         EmployeePayrollServices employeePayrollServices = new EmployeePayrollServices();
-        employeePayrollServices.readEmployeeData(DB_IO);
-        employeePayrollServices.updateEmployeeSalary("Terisa", 10000.00);
-        boolean result = employeePayrollServices.checkEmployeeDataSyncWithDB("Terisa");
-        Assert.assertTrue(result);
+        int i = employeePayrollServices.updateEmployeeSalary("MARK", 50000.00, DB_IO);
+        Assert.assertEquals(1, i);
     }
 
     @Test
@@ -34,26 +35,35 @@ public class EmployeePayrollServiceTest {
         LocalDate startDate = LocalDate.of(2018, 1, 1);
         LocalDate endDate = LocalDate.now();
         List<EmployeePayrollData> employeePayrollDataList = employeePayrollServices.readEmployeeDataForDateRange(DB_IO, startDate, endDate);
-        Assert.assertEquals(3, employeePayrollDataList.size());
+        System.out.println(employeePayrollDataList.toString());
+        Assert.assertEquals(1, employeePayrollDataList.size());
     }
 
     @Test
     public void givenPayrollData_whenAverageSalaryRetrievedByGender_shouldReturnProperValue() {
         EmployeePayrollServices employeePayrollServices = new EmployeePayrollServices();
-        employeePayrollServices.readEmployeeData(DB_IO);
         Map<String, Double> averageSalaryByGender = employeePayrollServices.readAverageSalaryByGender(DB_IO);
-        Assert.assertTrue(averageSalaryByGender.get("M").equals(20000.00) &&
-                averageSalaryByGender.get("F").equals(30000.00));
+        Assert.assertTrue(averageSalaryByGender.get("M").equals(50000.00) ||
+                averageSalaryByGender.get("F").equals(0.0));
     }
 
     @Test
     public void givenNewEmployee_whenAdded_shouldSyncWithDB() {
         EmployeePayrollServices employeePayrollServices = new EmployeePayrollServices();
-        employeePayrollServices.readEmployeeData(DB_IO);
-        employeePayrollServices.addEmployeeToPayroll("Mark", 50000.00, LocalDate.now(), "M");
-        boolean result = employeePayrollServices.checkEmployeeDataSyncWithDB("Mark");
+        employeePayrollServices.addEmployeeToPayroll("Neeta", 50000.00, LocalDate.now(), "F");
+        boolean result = employeePayrollServices.checkEmployeeDataSyncWithDB("Neeta");
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void givenEmployeeDB_whenDeleteData_shouldSyncWithDB() {
+        EmployeePayrollServices employeePayrollServices = new EmployeePayrollServices();
+        boolean is_active = employeePayrollServices.deleteEmployeeData("Neeta", DB_IO);
+        Assert.assertFalse(is_active);
+    }
+
+
+
 
 
 }

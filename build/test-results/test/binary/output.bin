@@ -1,1 +1,14 @@
-13
+AProcessing Thread :Test worker connecting to database with id 1
+jProcessing Thread :Test worker id :1 connection is successfully :com.mysql.jdbc.JDBC4Connection@6faae539
+Employee being added :pradip
+AProcessing Thread :Test worker connecting to database with id 2
+jProcessing Thread :Test worker id :2 connection is successfully :com.mysql.jdbc.JDBC4Connection@3d5cdb8f
+Employee Added :pradip
+Employee being added :kamini
+AProcessing Thread :Test worker connecting to database with id 3
+jProcessing Thread :Test worker id :3 connection is successfully :com.mysql.jdbc.JDBC4Connection@752f15ef
+Employee Added :kamini
+†without thread :-- [EmployeePayrollData{id=18, name='Mark', salary=50000.0, startDate=2020-11-22}, EmployeePayrollData{id=91, name='pradip', salary=10000.0, startDate=2020-11-24}, EmployeePayrollData{id=92, name='kamini', salary=20000.0, startDate=2020-11-24}]
+&Duration without thread PT2.6421451S
+±with thread : -[EmployeePayrollData{id=0, name='pradip', salary=10000.0, startDate=2020-11-24}, EmployeePayrollData{id=0, name='kamini', salary=20000.0, startDate=2020-11-24}]
+Duration with thread PT0S
